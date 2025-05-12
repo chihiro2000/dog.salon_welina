@@ -18,8 +18,8 @@ export default function Home() {
             </h2>
             <p className="mb-8 text-lg text-muted-foreground">
               {siteConfig.name}
-              では、ペットの健康と美しさを第一に考え、安心・安全なトリミングサービスを提供しています。
-              熟練したトリマーが、ペットの個性や好みに合わせたスタイリングを心がけています。
+              では、その子その子に合わせたトリミングを心がけています。
+              熟練したトリマーが、ペットの個性や好みに合わせたスタイリングでお応えします。
               皆様とペットの笑顔のために、丁寧な施術と快適な空間をご用意しておりますので、ぜひお気軽にご来店ください。
             </p>
             <div className="grid gap-6 sm:grid-cols-3">
@@ -30,17 +30,17 @@ export default function Home() {
                 </p>
               </div>
               <div className="rounded-lg bg-muted p-6 text-center">
-                <h3 className="mb-2 text-xl font-semibold">快適な空間</h3>
+                <h3 className="mb-2 text-xl font-semibold">駐車場完備</h3>
                 <p className="text-sm text-muted-foreground">
-                  清潔で明るい店内で、ペットもリラックスして施術を受けられます。
+                  駐車場を完備しておりますので、お車でのご来店も安心です。
                 </p>
               </div>
               <div className="rounded-lg bg-muted p-6 text-center">
                 <h3 className="mb-2 text-xl font-semibold">
-                  丁寧なカウンセリング
+                  多様なお支払い方法
                 </h3>
                 <p className="text-sm text-muted-foreground">
-                  ペットの状態や飼い主様のご要望をしっかりとお聞きし、最適なプランをご提案します。
+                  現金だけでなく、クレジットカード決済も可能です。
                 </p>
               </div>
             </div>

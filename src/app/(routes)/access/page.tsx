@@ -38,11 +38,11 @@ export default function AccessPage() {
               <div>
                 <h2 className="mb-2 text-xl font-semibold">営業時間</h2>
                 <p className="text-muted-foreground">
-                  平日: {siteConfig.hours.weekdays}
-                  <br />
-                  土日: {siteConfig.hours.weekends}
+                  営業時間: {siteConfig.hours.weekdays}
                   <br />
                   {siteConfig.hours.holidays}
+                  <br />
+                  駐車場あり
                 </p>
               </div>
             </div>
@@ -55,6 +55,10 @@ export default function AccessPage() {
                   電話: {siteConfig.contact.phone}
                   <br />
                   メール: {siteConfig.contact.email}
+                  <br />
+                  お支払い: 現金・クレジット決済
+                  <br />
+                  登録番号：第4911-2号
                 </p>
               </div>
             </div>
@@ -66,18 +70,12 @@ export default function AccessPage() {
               <div>
                 <h3 className="mb-1 font-medium">電車でお越しの場合</h3>
                 <p className="text-sm text-muted-foreground">
-                  JR大阪駅から徒歩7分
-                  <br />
-                  地下鉄御堂筋線「梅田駅」から徒歩5分
+                  JR阪和線「信太山駅」より徒歩15分
                 </p>
               </div>
               <div>
                 <h3 className="mb-1 font-medium">お車でお越しの場合</h3>
-                <p className="text-sm text-muted-foreground">
-                  阪神高速13号東大阪線「梅田出口」から約5分
-                  <br />
-                  駐車場: 近隣の有料駐車場をご利用ください（一部提携割引あり）
-                </p>
+                <p className="text-sm text-muted-foreground">駐車場あり</p>
               </div>
             </div>
           </div>
@@ -85,7 +83,7 @@ export default function AccessPage() {
 
         <div className="h-[400px] overflow-hidden rounded-lg border md:h-full">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3280.2747147225394!2d135.49348687678598!3d34.70059697290474!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000e68d95e3a70b%3A0x38648ecdc5bd7f15!2z5aSn6Ziq6aeF!5e0!3m2!1sja!2sjp!4v1715548761714!5m2!1sja!2sjp"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3291.7887113086784!2d135.44861597654984!3d34.510505279674155!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000dad297455575%3A0x222cbb44f5594dbe!2z44CSNTk0LTAwMDIg5aSn6Ziq5bqc5ZKM5rG95biC5LiK55S377yT77yX77yT4oiS77yU!5e0!3m2!1sja!2sjp!4v1715626815407!5m2!1sja!2sjp"
             width="100%"
             height="100%"
             style={{ border: 0 }}

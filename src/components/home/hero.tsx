@@ -8,7 +8,7 @@ export function Hero() {
       <div className="absolute inset-0 z-0">
         <Image
           src="/images/hero/hero-bg.jpg"
-          alt="可愛い犬と猫"
+          alt="可愛い犬"
           fill
           className="object-cover opacity-10"
           priority
@@ -22,8 +22,8 @@ export function Hero() {
               <span className="text-primary">最高のケア</span>を
             </h1>
             <p className="mb-6 max-w-[600px] text-lg text-muted-foreground md:text-xl">
-              Pet
-              Salonでは、プロのトリマーが愛情を込めて、ペットの美しさと健康をサポートします。
+              DOG SALON
+              Welinaでは、その子その子に合わせたトリミングを提供し、ペットの美しさと健康をサポートします。
             </p>
             <div className="flex flex-col gap-4 sm:flex-row">
               <Button size="lg" asChild>

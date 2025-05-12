@@ -21,24 +21,24 @@ export type SiteConfig = {
 };
 
 export const siteConfig: SiteConfig = {
-  name: "Pet Salon",
+  name: "DOG SALON Welina",
   description:
-    "あなたの大切なペットを安心してお任せください。美しく、健康的な仕上がりをお約束します。",
-  url: "https://petsalon.vercel.app",
+    "あなたの大切なペットを安心してお任せください。その子その子に合わせたトリミングをさせて頂きます。",
+  url: "https://dogsalonwelina.vercel.app",
   ogImage: "/images/og-image.jpg",
   links: {
-    twitter: "https://twitter.com/petsalon",
-    instagram: "https://instagram.com/petsalon",
-    facebook: "https://facebook.com/petsalon",
+    twitter: "https://twitter.com/dogsalonwelina",
+    instagram: "https://instagram.com/dogsalonwelina",
+    facebook: "https://facebook.com/dogsalonwelina",
   },
   contact: {
-    phone: "06-1234-5678",
-    email: "info@petsalon.com",
-    address: "〒530-0001 大阪府大阪市北区梅田1-1-1",
+    phone: "090-6846-5356",
+    email: "info@dogsalonwelina.com",
+    address: "〒594-0002 大阪府和泉市上町373-4",
   },
   hours: {
-    weekdays: "10:00 - 19:00",
-    weekends: "10:00 - 18:00",
-    holidays: "定休日：毎週水曜日、年末年始",
+    weekdays: "9:00 - 18:00",
+    weekends: "9:00 - 18:00",
+    holidays: "不定休",
   },
 };

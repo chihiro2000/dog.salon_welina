@@ -27,7 +27,7 @@ export default function ReservationPage() {
           ご予約
         </h1>
         <p className="text-lg text-muted-foreground">
-          お電話またはオンラインでカンタンにご予約いただけます
+          お電話でカンタンにご予約いただけます
         </p>
       </div>
 
@@ -45,9 +45,7 @@ export default function ReservationPage() {
             <p className="mt-4 text-sm text-muted-foreground">
               営業時間:
               <br />
-              平日: {siteConfig.hours.weekdays}
-              <br />
-              土日: {siteConfig.hours.weekends}
+              {siteConfig.hours.weekdays}
               <br />
               {siteConfig.hours.holidays}
             </p>
@@ -62,22 +60,21 @@ export default function ReservationPage() {
         <Card>
           <CardHeader>
             <Calendar className="mb-2 h-10 w-10 text-primary" />
-            <CardTitle>オンラインでのご予約</CardTitle>
-            <CardDescription>
-              24時間いつでもオンラインで簡単にご予約いただけます
-            </CardDescription>
+            <CardTitle>その他のご案内</CardTitle>
+            <CardDescription>ご来店の際の注意事項</CardDescription>
           </CardHeader>
           <CardContent>
             <p className="text-sm text-muted-foreground">
-              以下のボタンから予約サイトへ移動し、ご希望の日時とメニューをお選びください。
-              初めてご利用の方は、会員登録が必要です。
+              お支払いは現金・クレジット決済が可能です。
+              <br />
+              駐車場がございますので、お車でのご来店も安心です。
+              <br />
+              登録番号：第4911-2号
             </p>
           </CardContent>
           <CardFooter>
             <Button className="w-full" size="lg" asChild>
-              <Link href="https://epark.jp" target="_blank">
-                EPARKで予約する
-              </Link>
+              <Link href="/access">アクセス情報を見る</Link>
             </Button>
           </CardFooter>
         </Card>

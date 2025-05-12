@@ -75,9 +75,10 @@ export function Footer() {
           <div>
             <h4 className="mb-4 text-sm font-semibold">営業時間</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>平日: {siteConfig.hours.weekdays}</li>
-              <li>土日: {siteConfig.hours.weekends}</li>
+              <li>営業時間: {siteConfig.hours.weekdays}</li>
               <li>{siteConfig.hours.holidays}</li>
+              <li>駐車場あり</li>
+              <li>登録番号：第4911-2号</li>
             </ul>
           </div>
 
@@ -87,6 +88,7 @@ export function Footer() {
               <li>電話: {siteConfig.contact.phone}</li>
               <li>メール: {siteConfig.contact.email}</li>
               <li>住所: {siteConfig.contact.address}</li>
+              <li>お支払い: 現金・クレジット決済</li>
             </ul>
             <div className="mt-4 flex space-x-2">
               <Button size="icon" variant="ghost" asChild>
