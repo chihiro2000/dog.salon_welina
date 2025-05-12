@@ -1,9 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Facebook, Instagram, Twitter } from "lucide-react";
+import { Instagram } from "lucide-react";
 
 import { siteConfig } from "@/config/site";
 import { Button } from "@/components/ui/button";
+import { LineIcon } from "@/components/icons/line-icon";
 
 export function Footer() {
   return (
@@ -90,25 +91,21 @@ export function Footer() {
               <li>住所: {siteConfig.contact.address}</li>
               <li>お支払い: 現金・クレジット決済</li>
             </ul>
-            <div className="mt-4 flex space-x-2">
-              <Button size="icon" variant="ghost" asChild>
-                <Link href={siteConfig.links.twitter}>
-                  <Twitter className="h-4 w-4" />
-                  <span className="sr-only">Twitter</span>
-                </Link>
-              </Button>
-              <Button size="icon" variant="ghost" asChild>
-                <Link href={siteConfig.links.instagram}>
-                  <Instagram className="h-4 w-4" />
-                  <span className="sr-only">Instagram</span>
-                </Link>
-              </Button>
-              <Button size="icon" variant="ghost" asChild>
-                <Link href={siteConfig.links.facebook}>
-                  <Facebook className="h-4 w-4" />
-                  <span className="sr-only">Facebook</span>
-                </Link>
-              </Button>
+            <div className="mt-4 flex space-x-4">
+              <Link
+                href={siteConfig.links.line}
+                className="text-foreground hover:text-primary"
+              >
+                <LineIcon className="h-8 w-8" />
+                <span className="sr-only">LINE</span>
+              </Link>
+              <Link
+                href={siteConfig.links.instagram}
+                className="text-foreground hover:text-primary"
+              >
+                <Instagram className="h-8 w-8" />
+                <span className="sr-only">Instagram</span>
+              </Link>
             </div>
           </div>
         </div>

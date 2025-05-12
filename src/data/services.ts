@@ -1,3 +1,76 @@
+export type ServiceCategory = {
+  id: string;
+  title: string;
+  description: string;
+  imageUrl: string;
+  details: string[];
+  icon: string;
+  color: string;
+};
+
+export const serviceCategories: ServiceCategory[] = [
+  {
+    id: "shampoo",
+    title: "シャンプーコース",
+    description:
+      "丁寧な施術で、ワンちゃんの毛並みがふわふわツヤツヤに仕上がります。",
+    imageUrl: "/images/services/shampoo.jpg",
+    details: [
+      "高品質なシャンプー剤使用",
+      "耳掃除・爪切り込み",
+      "肛門腺絞り込み",
+      "足裏、肛門、お腹バリカン込み",
+    ],
+    icon: "droplet",
+    color: "bg-blue-50",
+  },
+  {
+    id: "cut",
+    title: "カットコース",
+    description:
+      "ワンちゃんの個性や飼い主様のご要望に合わせたスタイリングをいたします。",
+    imageUrl: "/images/services/cut.jpg",
+    details: [
+      "シャンプーコース内容を含む",
+      "全身カット込み",
+      "ご希望のスタイルに対応",
+      "カット後のブロー仕上げ",
+    ],
+    icon: "scissors",
+    color: "bg-amber-50",
+  },
+  {
+    id: "option",
+    title: "オプションメニュー",
+    description:
+      "ワンちゃんの健康と美しさを保つための追加メニューをご用意しています。",
+    imageUrl: "/images/services/option.jpg",
+    details: [
+      "ハミガキ(歯ブラシ別途)",
+      "肉球ケア",
+      "泥パック",
+      "シルクたっぷり泡パック",
+    ],
+    icon: "sparkles",
+    color: "bg-pink-50",
+  },
+  {
+    id: "partial",
+    title: "部分メニュー",
+    description: "必要な部分だけのケアも可能です。お気軽にご相談ください。",
+    imageUrl: "/images/services/partial.jpg",
+    details: [
+      "爪切り、耳掃除",
+      "部分カット（目元・口元）",
+      "肛門腺絞り",
+      "抜け毛・毛玉処理",
+    ],
+    icon: "target",
+    color: "bg-green-50",
+  },
+];
+
+// 後方互換性のために古い型定義も維持
 export type Service = {
   id: string;
   title: string;

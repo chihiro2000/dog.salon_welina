@@ -1,0 +1,87 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { getGalleryImages } from "@/lib/gallery-api";
+import { type GalleryImage } from "@/lib/supabase";
+import { Button } from "@/components/ui/button";
+
+export function GalleryPreview() {
+  const [galleryImages, setGalleryImages] = useState<GalleryImage[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchGalleryImages() {
+      try {
+        const images = await getGalleryImages(6); // 最新の6枚のみ取得
+        setGalleryImages(images);
+      } catch (error) {
+        console.error("ギャラリー画像の取得に失敗しました:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    fetchGalleryImages();
+  }, []);
+
+  return (
+    <section className="bg-background py-16 sm:py-24">
+      <div className="container">
+        <div className="mb-12 text-center">
+          <h2 className="mb-2 text-3xl font-bold tracking-tight md:text-4xl">
+            ギャラリー
+          </h2>
+          <p className="mx-auto max-w-[700px] text-lg text-muted-foreground">
+            当店でのトリミング実績をご紹介します
+          </p>
+        </div>
+
+        {isLoading ? (
+          <div className="flex justify-center py-12">
+            <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-primary"></div>
+          </div>
+        ) : galleryImages.length > 0 ? (
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+            {galleryImages.map((image) => (
+              <Link
+                key={image.id}
+                href={`/gallery`}
+                className="group relative overflow-hidden rounded-lg transition-all hover:shadow-md"
+              >
+                <div className="aspect-square w-full overflow-hidden">
+                  <Image
+                    src={image.image_url}
+                    alt={image.title}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+                <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/70 to-transparent p-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  <h3 className="text-sm font-medium text-white">
+                    {image.title}
+                  </h3>
+                </div>
+              </Link>
+            ))}
+          </div>
+        ) : (
+          <div className="rounded-lg border bg-card p-8 text-center text-muted-foreground">
+            現在ギャラリーに画像はありません。
+          </div>
+        )}
+
+        <div className="mt-12 text-center">
+          <Button variant="outline" size="lg" asChild>
+            <Link href="/gallery">
+              すべての写真を見る
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </Button>
+        </div>
+      </div>
+    </section>
+  );
+}

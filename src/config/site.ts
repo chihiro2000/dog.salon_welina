@@ -4,9 +4,8 @@ export type SiteConfig = {
   url: string;
   ogImage: string;
   links: {
-    twitter: string;
+    line: string;
     instagram: string;
-    facebook: string;
   };
   contact: {
     phone: string;
@@ -27,13 +26,13 @@ export const siteConfig: SiteConfig = {
   url: "https://dogsalonwelina.vercel.app",
   ogImage: "/images/og-image.jpg",
   links: {
-    twitter: "https://twitter.com/dogsalonwelina",
-    instagram: "https://instagram.com/dogsalonwelina",
-    facebook: "https://facebook.com/dogsalonwelina",
+    line: "https://line.me/R/ti/p/@888whmrz?oat_content=url&ts=04032211",
+    instagram:
+      "https://www.instagram.com/dog.salon_welina?igsh=em1seGhoejkwdnVq",
   },
   contact: {
     phone: "090-6846-5356",
-    email: "info@dogsalonwelina.com",
+    email: "------.com",
     address: "〒594-0002 大阪府和泉市上町373-4",
   },
   hours: {

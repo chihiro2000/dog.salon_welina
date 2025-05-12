@@ -1,14 +1,18 @@
 import { Hero } from "@/components/home/hero";
 import { Services } from "@/components/home/services";
+import { AccessMap } from "@/components/home/access-map";
 import { NewsSection } from "@/components/home/news-section";
+import { GalleryPreview } from "@/components/home/gallery-preview";
 import { siteConfig } from "@/config/site";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <Services />
       <NewsSection />
+      <Services />
+      <GalleryPreview />
+      <AccessMap />
 
       <section className="bg-background py-16 sm:py-24">
         <div className="container">
