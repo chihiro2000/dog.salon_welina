@@ -9,17 +9,10 @@ const nextConfig = {
       },
     ],
   },
-  // 静的生成中に問題となるページを除外
+  // App Routerプロジェクトでは、exportPathMapは使用できません
+  // 代わりに基本的な設定だけを適用
   experimental: {
-    // クライアントコンポーネントを利用するページはここで指定
     serverComponentsExternalPackages: ["react-dom/server"],
-  },
-  // 動的ルートとして扱うパス
-  exportPathMap: async function () {
-    return {
-      "/": { page: "/" },
-      // '/news' と '/news/:id' は含めない（クライアントサイドレンダリングとする）
-    };
   },
 };
 
