@@ -22,7 +22,7 @@ export default function AdminDashboard() {
         return;
       }
 
-      setUserName(data.user.email);
+      setUserName(data.user.email ?? null);
       setIsLoading(false);
     }
 
