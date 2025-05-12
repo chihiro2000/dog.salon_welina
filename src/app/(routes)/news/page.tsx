@@ -7,7 +7,7 @@ import { ja } from "date-fns/locale";
 import { ArrowRight } from "lucide-react";
 
 import { getNews } from "@/lib/news-api";
-import { type News } from "@/lib/supabase";
+import { type News } from "@/lib/supabase/spabase";
 import { Button } from "@/components/ui/button";
 import {
   Card,

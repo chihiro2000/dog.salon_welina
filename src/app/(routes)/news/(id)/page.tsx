@@ -8,7 +8,7 @@ import { ja } from "date-fns/locale";
 import { ChevronLeft } from "lucide-react";
 
 import { getNewsById } from "@/lib/news-api";
-import { type News } from "@/lib/supabase";
+import { type News } from "@/lib/supabase/spabase";
 import { Button } from "@/components/ui/button";
 
 export default function NewsDetailPage({ params }: { params: { id: string } }) {
