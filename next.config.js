@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "standalone",
+  // outputは削除（デフォルトのサーバーサイドレンダリングを使用）
   images: {
     remotePatterns: [
       {
@@ -8,11 +8,6 @@ const nextConfig = {
         hostname: "images.unsplash.com",
       },
     ],
-  },
-  // App Routerプロジェクトでは、exportPathMapは使用できません
-  // 代わりに基本的な設定だけを適用
-  experimental: {
-    serverComponentsExternalPackages: ["react-dom/server"],
   },
 };
 
