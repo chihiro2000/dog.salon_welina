@@ -7,6 +7,11 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
 // 空の文字列でも作成は可能（実際のアクセスはエラーになる可能性あり）
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
+// 環境変数チェック関数 - 他のファイルで使用されているため追加
+export function isSupabaseAvailable() {
+  return !!supabaseUrl && !!supabaseAnonKey;
+}
+
 // ニュース関連の型定義
 export type News = {
   id: string;
