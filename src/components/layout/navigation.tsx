@@ -11,9 +11,10 @@ const navItems = [
 
 interface NavigationProps {
   mobile?: boolean;
+  onItemClick?: () => void; // メニューを閉じるためのコールバック関数を追加
 }
 
-export function Navigation({ mobile = false }: NavigationProps) {
+export function Navigation({ mobile = false, onItemClick }: NavigationProps) {
   const pathname = usePathname();
 
   return (
@@ -29,6 +30,7 @@ export function Navigation({ mobile = false }: NavigationProps) {
               ? "font-medium text-foreground"
               : "text-foreground/60"
           )}
+          onClick={onItemClick} // クリック時にコールバックを実行
         >
           {item.label}
         </Link>

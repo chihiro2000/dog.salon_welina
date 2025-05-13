@@ -12,11 +12,20 @@ import { Navigation } from "./navigation";
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  // メニューを閉じる関数
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
     <header className="sticky top-0 z-40 w-full border-b border-[#e6deb7] bg-[#fffef8]/90 backdrop-blur-sm">
       <div className="container flex h-18 md:h-28 items-center justify-between">
         <div className="flex items-center gap-2">
-          <Link href="/" className="flex items-center space-x-2">
+          <Link
+            href="/"
+            className="flex items-center space-x-2"
+            onClick={closeMenu}
+          >
             <Image
               src="/images/logo.jpg"
               alt={siteConfig.name}
@@ -49,7 +58,7 @@ export function Header() {
         <nav className="hidden md:flex md:items-center md:gap-6">
           <Navigation />
           <Button
-            className="rounded-full bg-[#a0e1a7] text-[#4a4333]  hover:bg-[#abefb3] transition-colors"
+            className="rounded-full bg-[#a0e1a7] text-[#4a4333] hover:bg-[#abefb3] transition-colors"
             asChild
           >
             <Link href="/reservation">予約する</Link>
@@ -60,12 +69,14 @@ export function Header() {
         {isMenuOpen && (
           <div className="absolute left-0 top-16 z-50 w-full bg-white p-4 shadow-lg md:hidden">
             <nav className="flex flex-col space-y-4">
-              <Navigation mobile />
+              <Navigation mobile onItemClick={closeMenu} />
               <Button
                 asChild
-                className="w-full rounded-full bg-[#a0e1a7] text-[#4a4333] hover:bg-[#abefb3]transition-colors"
+                className="w-full rounded-full bg-[#a0e1a7] text-[#4a4333] hover:bg-[#abefb3] transition-colors"
               >
-                <Link href="/reservation">予約する</Link>
+                <Link href="/reservation" onClick={closeMenu}>
+                  予約する
+                </Link>
               </Button>
             </nav>
           </div>

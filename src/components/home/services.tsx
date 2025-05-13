@@ -1,227 +1,147 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-
-const serviceItems = [
-  {
-    id: "shampoo",
-    title: "シャンプー",
-    titleEn: "Shampoo",
-    description:
-      "高品質なシャンプー剤とこだわりのシャワーマシーンで洗浄。ふわふわの仕上がりに。",
-    imageUrl: "/images/services/shampoo.png",
-  },
-  {
-    id: "cut",
-    title: "トリミング",
-    titleEn: "Trimming",
-    description:
-      "わんちゃん一匹一匹の毛質や個性に合わせた、丁寧なカットで理想のスタイルに。",
-    imageUrl: "/images/services/trimming.png",
-  },
-  {
-    id: "option",
-    title: "オプションメニュー",
-    titleEn: "Option",
-    description:
-      "泡パック、炭酸泉、肉球ケア、歯磨きなど、愛犬の美容と健康をサポートするメニュー。",
-    imageUrl: "/images/services/option.png",
-  },
-  {
-    id: "partial",
-    title: "部分メニュー",
-    titleEn: "Partial Care",
-    description:
-      "爪切り、耳掃除、肛門腺絞りなど、必要な部分のみのケアもご提供しています。",
-    imageUrl: "/images/services/partial.png",
-  },
-];
+import { ArrowRight } from "lucide-react";
 
 export function Services() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const totalItems = serviceItems.length;
-  const sliderRef = useRef<HTMLDivElement>(null);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
-  const AUTO_SLIDE_INTERVAL = 4000; // 4秒ごとに自動スライド
-
-  const nextSlide = () => {
-    setActiveIndex((prev) => (prev === totalItems - 1 ? 0 : prev + 1));
-  };
-
-  const prevSlide = () => {
-    setActiveIndex((prev) => (prev === 0 ? totalItems - 1 : prev - 1));
-  };
-
-  // スライダーを自動的に進める
-  useEffect(() => {
-    intervalRef.current = setInterval(() => {
-      nextSlide();
-    }, AUTO_SLIDE_INTERVAL);
-
-    // クリーンアップ関数
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-    };
-  }, [activeIndex]);
-
-  // ユーザーが操作した場合、自動スライドをリセット
-  const handleManualNavigation = (action: () => void) => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-    }
-    action();
-    intervalRef.current = setInterval(() => {
-      nextSlide();
-    }, AUTO_SLIDE_INTERVAL);
-  };
-
-  // スライダーのスクロール位置を更新
-  useEffect(() => {
-    if (sliderRef.current) {
-      const scrollAmount = sliderRef.current.scrollWidth / totalItems;
-      sliderRef.current.scrollTo({
-        left: activeIndex * scrollAmount,
-        behavior: "smooth",
-      });
-    }
-  }, [activeIndex, totalItems]);
-
   return (
-    <section className="py-24 bg-[#fcf9e4] sm:py-32">
-      <div className="container">
-        <div className="mb-12 text-center">
-          <h2 className="mb-3 text-4xl font-bold tracking-tight md:text-5xl text-[#4a4333]">
+    <section className="py-8 bg-[#fcf9e4] sm:py-20">
+      <div className="container mx-auto px-4">
+        {/* ヘッダー */}
+        <div className="mb-4 sm:mb-8 text-center">
+          <h3
+            className="text-2xl md:text-3xl font-medium text-[#b7aa79] mb-1 md:mb-2 italic"
+            style={{ fontFamily: "cursive" }}
+          >
+            Our Services
+          </h3>
+          <h2 className="mb-1 sm:mb-2 text-3xl font-bold tracking-tight md:text-5xl text-[#4a4333]">
             サービス
           </h2>
-          <p className="mx-auto max-w-[700px] text-xl text-[#70695a]">
-            当店では、ワンちゃん一匹一匹に合わせた最適なケアをご提供しています
-          </p>
         </div>
 
-        <div className="relative">
-          {/* スライダーナビゲーション */}
-          <div className="absolute left-0 right-0 top-1/2 z-10 flex -translate-y-1/2 justify-between px-6">
-            <button
-              onClick={() => handleManualNavigation(prevSlide)}
-              className="rounded-full bg-white/90 p-3 text-[#4a4333] shadow-md hover:bg-white transition-all"
-            >
-              <ChevronLeft className="h-7 w-7" />
-            </button>
-            <button
-              onClick={() => handleManualNavigation(nextSlide)}
-              className="rounded-full bg-white/90 p-3 text-[#4a4333] shadow-md hover:bg-white transition-all"
-            >
-              <ChevronRight className="h-7 w-7" />
-            </button>
-          </div>
-
-          {/* スライダー */}
-          <div
-            ref={sliderRef}
-            className="no-scrollbar flex snap-x snap-mandatory overflow-x-scroll scroll-smooth"
-          >
-            {serviceItems.map((service, index) => (
+        {/* トリミング */}
+        <div className="mb-10 sm:mb-16">
+          <div className="flex flex-col md:flex-row items-center">
+            <div className="w-full md:w-3/5 mb-4 md:mb-0 order-1 md:order-2">
               <div
-                key={service.id}
-                className={cn(
-                  "min-w-full snap-center px-4",
-                  activeIndex === index
-                    ? "opacity-100"
-                    : "opacity-30 hover:opacity-70 transition-opacity"
-                )}
+                className="relative w-full overflow-hidden rounded-3xl"
+                style={{ paddingTop: "75%" }}
               >
-                <div className="overflow-hidden rounded-3xl bg-white shadow-lg">
-                  <div className="flex flex-col lg:flex-row">
-                    <div className="order-2 w-full p-10 lg:order-1 lg:w-1/2 lg:p-16 flex flex-col justify-center">
-                      <h3
-                        className="mb-2 text-2xl font-medium text-[#b7aa79]"
-                        style={{ fontFamily: "cursive" }}
-                      >
-                        {service.titleEn}
-                      </h3>
-                      <h2 className="mb-6 text-4xl font-bold text-[#4a4333]">
-                        {service.title}
-                      </h2>
-                      <p className="mb-10 text-xl leading-relaxed text-[#70695a]">
-                        {service.description}
-                      </p>
-                      <Link
-                        href="/price"
-                        className="group inline-flex items-center text-[#b7aa79] text-lg font-medium"
-                      >
-                        MORE
-                        <span className="ml-2 rounded-full transition-transform group-hover:translate-x-1">
-                          <ArrowRight className="h-6 w-6" />
-                        </span>
-                      </Link>
-                    </div>
-                    <div className="order-1 h-96 md:h-[400px] w-full lg:order-2 lg:h-[600px] lg:w-1/2">
-                      <div className="relative h-full w-full">
-                        <Image
-                          src={service.imageUrl}
-                          alt={service.title}
-                          fill
-                          className="object-cover"
-                          sizes="(max-width: 1024px) 100vw, 50vw"
-                          priority
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <Image
+                  src="/images/services/trimming.png"
+                  alt="トリミング"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 60vw"
+                  priority
+                />
               </div>
-            ))}
+            </div>
+            <div className="w-full md:w-2/5 order-2 md:order-1 md:pr-12">
+              <h3
+                className="text-2xl md:text-3xl font-medium text-[#b7aa79] mb-1 md:mb-2 italic"
+                style={{ fontFamily: "cursive" }}
+              >
+                Trimming
+              </h3>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#4a4333] mb-2 md:mb-6">
+                トリミング
+              </h2>
+              <p className="text-sm md:text-lg text-[#70695a] mb-4 md:mb-8 leading-relaxed">
+                トリミングは見た目を整えるだけでなく、ワンちゃんの健康や快適さを守る大切なケアです。
+                当サロンでは、一匹一匹の性格や体質、被毛や皮膚の状態を丁寧に見極めながら、
+                その子に合ったスタイルと施術を行っています。
+                <br />
+                <br />
+                シャンプーには、トリマー目線で開発された『Leadog（リードッグ）』を使用し、
+                やさしく汚れを落としながら、ふんわりとした仕上がりに。
+                カットもしやすく、時短でワンちゃんの負担も軽減できるため、
+                最後まで安心してお任せいただけます。
+                <br />
+                <br />
+                可愛さだけでなく、過ごしやすさやお手入れのしやすさまで考えた
+                "その子らしさ"を大切にしたトリミングを心がけています。
+              </p>
+
+              <div>
+                <Link
+                  href="/price"
+                  className="inline-flex items-center rounded-full bg-[#a0e1a7] hover:bg-[#abefb3] px-5 md:px-8 py-2 md:py-3 text-sm md:text-base font-medium text-[#4a4333] transition-colors"
+                >
+                  MORE
+                  <ArrowRight className="ml-2 h-4 w-4 md:h-5 md:w-5" />
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* スライダーインジケーター */}
-        <div className="mt-10 flex justify-center space-x-3">
-          {serviceItems.map((_, index) => (
-            <button
-              key={index}
-              className={cn(
-                "h-3 w-12 rounded-full transition-all",
-                activeIndex === index ? "bg-[#b7aa79]" : "bg-[#e6deb7]"
-              )}
-              onClick={() =>
-                handleManualNavigation(() => setActiveIndex(index))
-              }
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
+        {/* シャンプー */}
+        <div className="mb-10 sm:mb-16">
+          <div className="flex flex-col md:flex-row-reverse items-center">
+            <div className="w-full md:w-3/5 mb-4 md:mb-0 order-1">
+              <div
+                className="relative w-full overflow-hidden rounded-3xl"
+                style={{ paddingTop: "75%" }}
+              >
+                <Image
+                  src="/images/services/shampoo.png"
+                  alt="シャンプー"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 60vw"
+                  priority
+                />
+              </div>
+            </div>
+            <div className="w-full md:w-2/5 order-2 md:pl-12">
+              <h3
+                className="text-2xl md:text-3xl font-medium text-[#b7aa79] mb-1 md:mb-2 italic"
+                style={{ fontFamily: "cursive" }}
+              >
+                Shampoo Care
+              </h3>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#4a4333] mb-2 md:mb-6">
+                シャンプー
+              </h2>
+              <p className="text-sm md:text-lg text-[#70695a] mb-4 md:mb-8 leading-relaxed">
+                ワンちゃんの皮膚は人よりもデリケートでとても敏感です。
+                当サロンでは、健康な肌と美しい被毛を守るために、
+                トリマー目線で開発された高品質シャンプー『Leadog（リードッグ）』を使用しています。
+                <br />
+                <br />
+                脂性肌用・普通肌用・敏感肌用の3種類があり、
+                それぞれのワンちゃんの肌質や毛質に合わせて最適なものを使い分けています。
+                <br />
+                <br />
+                コンディショナーなしでもふんわり柔らかく仕上がり、
+                乾きやすく、カットのしやすさも特長です。
+                短時間で負担をかけずにケアができるよう配慮しています。
+                <br />
+                <br />
+                『Leadog』は、やさしい成分で洗い上げることはもちろん、
+                トリミング作業のしやすさや仕上がりの可愛さにもこだわった、
+                ワンちゃんにもトリマーにもやさしいシャンプーです。
+              </p>
+
+              <div>
+                <Link
+                  href="/price"
+                  className="inline-flex items-center rounded-full bg-[#a0e1a7] hover:bg-[#abefb3] px-5 md:px-8 py-2 md:py-3 text-sm md:text-base font-medium text-[#4a4333] transition-colors"
+                >
+                  MORE
+                  <ArrowRight className="ml-2 h-4 w-4 md:h-5 md:w-5" />
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div className="mt-16 text-center">
-          <Button
-            size="lg"
-            className="rounded-full bg-[#a0e1a7] hover:bg-[#abefb3] px-10 py-7 text-lg text-[#4a4333] transition-colors"
-            asChild
-          >
-            <Link href="/price">
-              料金表を見る
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Link>
-          </Button>
-        </div>
+        {/* 料金表ボタン */}
       </div>
-
-      {/* スクロールバーを隠すためのグローバルスタイル追加 */}
-      <style jsx global>{`
-        .no-scrollbar::-webkit-scrollbar {
-          display: none;
-        }
-        .no-scrollbar {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-      `}</style>
     </section>
   );
 }
