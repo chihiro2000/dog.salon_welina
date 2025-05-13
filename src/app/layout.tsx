@@ -4,6 +4,7 @@ import "./globals.css";
 
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { MobileNav } from "@/components/layout/mobile-nav"; // 追加
 import { siteConfig } from "@/config/site";
 
 const notoSansJP = Noto_Sans_JP({
@@ -70,6 +71,7 @@ export default function RootLayout({
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
+          <MobileNav /> {/* 追加したモバイルナビゲーション */}
         </div>
       </body>
     </html>
