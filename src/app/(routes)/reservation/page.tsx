@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { Phone, Calendar } from "lucide-react";
-
+import { Phone, Calendar, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -16,7 +15,7 @@ import { siteConfig } from "@/config/site";
 export const metadata: Metadata = {
   title: "ご予約",
   description:
-    "ペットのトリミングサービスのご予約はこちらから。お電話またはオンラインで簡単に予約できます。",
+    "ペットのトリミングサービスのご予約はこちらから。オンラインまたはお電話で簡単に予約できます。",
 };
 
 export default function ReservationPage() {
@@ -27,54 +26,73 @@ export default function ReservationPage() {
           ご予約
         </h1>
         <p className="text-lg text-muted-foreground">
-          お電話でカンタンにご予約いただけます
+          24時間いつでもオンラインで簡単にご予約いただけます
         </p>
       </div>
 
-      <div className="mx-auto grid max-w-4xl gap-8 md:grid-cols-2">
-        <Card>
-          <CardHeader>
-            <Phone className="mb-2 h-10 w-10 text-primary" />
-            <CardTitle>お電話でのご予約</CardTitle>
-            <CardDescription>
-              直接お電話いただければ、ご希望の日時をご相談いただけます
-            </CardDescription>
+      <div className="mx-auto mb-8 max-w-4xl">
+        <Card className="overflow-hidden border-2 border-primary/20 bg-gradient-to-br from-secondary/40 to-primary/10">
+          <CardHeader className="pb-2">
+            <div className="flex items-center">
+              <Calendar className="mr-3 h-12 w-12 text-primary" />
+              <div>
+                <CardTitle className="text-2xl">EPARKでのご予約</CardTitle>
+                <CardDescription className="text-base">
+                  24時間いつでも簡単にご予約可能
+                </CardDescription>
+              </div>
+            </div>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-bold">{siteConfig.contact.phone}</p>
-            <p className="mt-4 text-sm text-muted-foreground">
-              営業時間:
-              <br />
-              {siteConfig.hours.weekdays}
-              <br />
-              {siteConfig.hours.holidays}
+            <p className="mb-6 text-lg">
+              ネットから簡単にご予約いただけます。スマホやパソコンからいつでもどこでも予約できるため、お電話が混み合う時間帯でもストレスなくご予約可能です。初めての方も安心してご利用ください。
             </p>
+            <div className="flex justify-center">
+              <a
+                href="https://petlife.asia/salon/17897/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full max-w-md"
+              >
+                <Button className="w-full py-6 text-lg" size="lg">
+                  EPARKで予約する
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </a>
+            </div>
           </CardContent>
-          <CardFooter>
-            <p className="text-sm text-muted-foreground">
-              ご予約のキャンセルは前日までにご連絡ください。
+          <CardFooter className="bg-primary/5 pt-4">
+            <p className="text-center text-sm text-muted-foreground">
+              EPARKペットライフは24時間いつでも予約可能。キャンセルもオンラインで簡単に行えます。
             </p>
           </CardFooter>
         </Card>
+      </div>
 
-        <Card>
-          <CardHeader>
-            <Calendar className="mb-2 h-10 w-10 text-primary" />
-            <CardTitle>その他のご案内</CardTitle>
-            <CardDescription>ご来店の際の注意事項</CardDescription>
+      <div className="mx-auto max-w-4xl">
+        <Card className="border border-muted bg-muted/20">
+          <CardHeader className="pb-2">
+            <div className="flex items-center">
+              <Phone className="mr-3 h-6 w-6 text-muted-foreground" />
+              <div>
+                <CardTitle className="text-base">
+                  お電話でのご予約も可能です
+                </CardTitle>
+              </div>
+            </div>
           </CardHeader>
-          <CardContent>
+          <CardContent className="flex items-center justify-between pb-4 pt-0">
+            <div>
+              <p className="text-lg font-medium">{siteConfig.contact.phone}</p>
+              <p className="text-sm text-muted-foreground">
+                営業時間: {siteConfig.hours.weekdays} /{" "}
+                {siteConfig.hours.holidays}
+              </p>
+            </div>
             <p className="text-sm text-muted-foreground">
-              お支払いは現金・クレジット決済が可能です。
-              <br />
-              駐車場がございますので、お車でのご来店も安心です。
+              ※ご予約のキャンセルは前日までにご連絡ください
             </p>
           </CardContent>
-          <CardFooter>
-            <Button className="w-full" size="lg" asChild>
-              <Link href="/access">アクセス情報を見る</Link>
-            </Button>
-          </CardFooter>
         </Card>
       </div>
 

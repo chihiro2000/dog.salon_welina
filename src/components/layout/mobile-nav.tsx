@@ -13,7 +13,9 @@ export function MobileNav() {
           label="電話"
         />
         <NavItem
-          href="/reservation"
+          href="https://petlife.asia/salon/17897/"
+          target="_blank"
+          rel="noopener noreferrer"
           icon={<Calendar className="h-5 w-5" />}
           label="予約"
         />
