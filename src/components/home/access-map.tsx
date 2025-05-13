@@ -16,9 +16,6 @@ export function AccessMap() {
           <h2 className="mb-1 sm:mb-2 text-3xl font-bold tracking-tight text-[#4a4333] md:text-4xl">
             アクセス
           </h2>
-          <p className="mx-auto max-w-[700px] text-lg text-[#70695a]">
-            便利な立地で、お気軽にお越しいただけます
-          </p>
         </div>
         <div className="mx-auto grid max-w-5xl gap-4 sm:gap-8 md:grid-cols-2">
           <div>

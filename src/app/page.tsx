@@ -23,7 +23,7 @@ export default function Home() {
             <p className="mb-8 text-lg text-muted-foreground">
               {siteConfig.name}
               では、その子その子に合わせたトリミングを心がけています。
-              ペットの個性や好みに合わせたスタイリングでお応えします。
+              ペットの個性に合わせたスタイリングでお応えします。
               皆様とペットの笑顔のために、丁寧な施術と快適な空間をご用意しておりますので、ぜひお気軽にご来店ください。
             </p>
             <div className="grid gap-6 sm:grid-cols-3">

@@ -70,17 +70,11 @@ export default function AboutPage() {
             <div className="space-y-4">
               <div>
                 <h3 className="mb-1 font-medium text-[#4a4333]">
-                  電車でお越しの場合
+                  お車でのご来店について
                 </h3>
                 <p className="text-sm text-[#70695a]">
-                  JR阪和線「信太山駅」より徒歩15分
+                  店舗前に専用駐車場をご用意しておりますので、安心してお越しください。
                 </p>
-              </div>
-              <div>
-                <h3 className="mb-1 font-medium text-[#4a4333]">
-                  お車でお越しの場合
-                </h3>
-                <p className="text-sm text-[#70695a]">駐車場あり</p>
               </div>
             </div>
           </div>
