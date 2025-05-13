@@ -20,9 +20,10 @@ export type SiteConfig = {
 };
 
 export const siteConfig: SiteConfig = {
-  name: "DOG SALON Welina",
+  name: "大阪府和泉市のドッグサロン DOG SALON Welina",
   description:
-    "あなたの大切なペットを安心してお任せください。その子その子に合わせたトリミングをさせて頂きます。",
+    "大阪府和泉市のトリミングサロン DOG SALON Welina。あなたの大切なペットを安心してお任せいただけます。その子その子に合わせた丁寧なトリミングで、可愛く健康に仕上げます。",
+
   url: "https://dogsalonwelina.vercel.app",
   ogImage: "/images/og-image.jpg",
   links: {

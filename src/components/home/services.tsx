@@ -94,13 +94,13 @@ export function Services() {
   }, [activeIndex, totalItems]);
 
   return (
-    <section className="py-24 bg-[#f7f4ef] sm:py-32">
+    <section className="py-24 bg-[#fcf9e4] sm:py-32">
       <div className="container">
         <div className="mb-12 text-center">
-          <h2 className="mb-3 text-4xl font-bold tracking-tight md:text-5xl text-[#6b5a45]">
+          <h2 className="mb-3 text-4xl font-bold tracking-tight md:text-5xl text-[#4a4333]">
             サービス
           </h2>
-          <p className="mx-auto max-w-[700px] text-xl text-[#8a7b68]">
+          <p className="mx-auto max-w-[700px] text-xl text-[#70695a]">
             当店では、ワンちゃん一匹一匹に合わせた最適なケアをご提供しています
           </p>
         </div>
@@ -110,13 +110,13 @@ export function Services() {
           <div className="absolute left-0 right-0 top-1/2 z-10 flex -translate-y-1/2 justify-between px-6">
             <button
               onClick={() => handleManualNavigation(prevSlide)}
-              className="rounded-full bg-white/80 p-3 text-[#6b5a45] shadow-md hover:bg-white transition-all"
+              className="rounded-full bg-white/90 p-3 text-[#4a4333] shadow-md hover:bg-white transition-all"
             >
               <ChevronLeft className="h-7 w-7" />
             </button>
             <button
               onClick={() => handleManualNavigation(nextSlide)}
-              className="rounded-full bg-white/80 p-3 text-[#6b5a45] shadow-md hover:bg-white transition-all"
+              className="rounded-full bg-white/90 p-3 text-[#4a4333] shadow-md hover:bg-white transition-all"
             >
               <ChevronRight className="h-7 w-7" />
             </button>
@@ -141,20 +141,20 @@ export function Services() {
                   <div className="flex flex-col lg:flex-row">
                     <div className="order-2 w-full p-10 lg:order-1 lg:w-1/2 lg:p-16 flex flex-col justify-center">
                       <h3
-                        className="mb-2 text-2xl font-medium text-[#c19a6b]"
+                        className="mb-2 text-2xl font-medium text-[#b7aa79]"
                         style={{ fontFamily: "cursive" }}
                       >
                         {service.titleEn}
                       </h3>
-                      <h2 className="mb-6 text-4xl font-bold text-[#6b5a45]">
+                      <h2 className="mb-6 text-4xl font-bold text-[#4a4333]">
                         {service.title}
                       </h2>
-                      <p className="mb-10 text-xl leading-relaxed text-[#8a7b68]">
+                      <p className="mb-10 text-xl leading-relaxed text-[#70695a]">
                         {service.description}
                       </p>
                       <Link
                         href="/price"
-                        className="group inline-flex items-center text-[#c19a6b] text-lg font-medium"
+                        className="group inline-flex items-center text-[#b7aa79] text-lg font-medium"
                       >
                         MORE
                         <span className="ml-2 rounded-full transition-transform group-hover:translate-x-1">
@@ -188,7 +188,7 @@ export function Services() {
               key={index}
               className={cn(
                 "h-3 w-12 rounded-full transition-all",
-                activeIndex === index ? "bg-[#c19a6b]" : "bg-[#d9cfc2]"
+                activeIndex === index ? "bg-[#b7aa79]" : "bg-[#e6deb7]"
               )}
               onClick={() =>
                 handleManualNavigation(() => setActiveIndex(index))
@@ -201,7 +201,7 @@ export function Services() {
         <div className="mt-16 text-center">
           <Button
             size="lg"
-            className="rounded-full bg-[#c19a6b] hover:bg-[#a88252] px-10 py-7 text-lg text-white"
+            className="rounded-full bg-[#a0e1a7] hover:bg-[#abefb3] px-10 py-7 text-lg text-[#4a4333] transition-colors"
             asChild
           >
             <Link href="/price">

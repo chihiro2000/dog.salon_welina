@@ -28,20 +28,20 @@ export function GalleryPreview() {
   }, []);
 
   return (
-    <section className="bg-background py-16 sm:py-24">
+    <section className="bg-[#fdfbea]/70 py-16 sm:py-24">
       <div className="container">
         <div className="mb-12 text-center">
-          <h2 className="mb-2 text-3xl font-bold tracking-tight md:text-4xl">
+          <h2 className="mb-2 text-3xl font-bold tracking-tight text-[#4a4333] md:text-4xl">
             ギャラリー
           </h2>
-          <p className="mx-auto max-w-[700px] text-lg text-muted-foreground">
+          <p className="mx-auto max-w-[700px] text-lg text-[#70695a]">
             当店でのトリミング実績をご紹介します
           </p>
         </div>
 
         {isLoading ? (
           <div className="flex justify-center py-12">
-            <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-primary"></div>
+            <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-[#b7aa79]"></div>
           </div>
         ) : galleryImages.length > 0 ? (
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
@@ -49,7 +49,7 @@ export function GalleryPreview() {
               <Link
                 key={image.id}
                 href={`/gallery`}
-                className="group relative overflow-hidden rounded-lg transition-all hover:shadow-md"
+                className="group relative overflow-hidden rounded-xl transition-all hover:shadow-md"
               >
                 <div className="aspect-square w-full overflow-hidden">
                   <Image
@@ -59,7 +59,7 @@ export function GalleryPreview() {
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                 </div>
-                <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/70 to-transparent p-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/70 to-transparent p-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                   <h3 className="text-sm font-medium text-white">
                     {image.title}
                   </h3>
@@ -68,13 +68,17 @@ export function GalleryPreview() {
             ))}
           </div>
         ) : (
-          <div className="rounded-lg border bg-card p-8 text-center text-muted-foreground">
+          <div className="rounded-lg border border-[#e6deb7] bg-[#fdfbea]/50 p-8 text-center text-[#70695a]">
             現在ギャラリーに画像はありません。
           </div>
         )}
 
         <div className="mt-12 text-center">
-          <Button variant="outline" size="lg" asChild>
+          <Button
+            size="lg"
+            className="rounded-full bg-[#a0e1a7] text-[#4a4333] hover:bg-[#abefb3] transition-colors"
+            asChild
+          >
             <Link href="/gallery">
               すべての写真を見る
               <ArrowRight className="ml-2 h-4 w-4" />

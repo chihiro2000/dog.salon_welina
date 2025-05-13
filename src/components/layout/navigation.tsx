@@ -6,7 +6,7 @@ const navItems = [
   { href: "/", label: "ホーム" },
   { href: "/price", label: "料金" },
   { href: "/gallery", label: "ギャラリー" },
-  { href: "/access", label: "アクセス" },
+  { href: "/about", label: "店舗概要" },
 ];
 
 interface NavigationProps {

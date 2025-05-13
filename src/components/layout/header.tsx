@@ -1,9 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { GalleryGrid } from "@/components/gallery/gallery-grid";
-import { ImageModal } from "@/components/gallery/image-modal";
-import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { MenuIcon, X } from "lucide-react";
@@ -13,22 +10,22 @@ import { Button } from "@/components/ui/button";
 import { Navigation } from "./navigation";
 
 export function Header() {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b bg-background">
-      <div className="container flex h-16 items-center justify-between">
+    <header className="sticky top-0 z-40 w-full border-b border-[#e6deb7] bg-[#fffef8]/90 backdrop-blur-sm">
+      <div className="container flex h-18 md:h-28 items-center justify-between">
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center space-x-2">
             <Image
-              src="/images/logo.png"
+              src="/images/logo.jpg"
               alt={siteConfig.name}
-              width={40}
-              height={40}
+              width={80}
+              height={80}
               className="rounded-full"
             />
-            <span className="inline-block text-xl font-bold">
-              {siteConfig.name}
+            <span className="inline-block text-xl font-bold text-[#4a4333]">
+              DOG SALON Welina
             </span>
           </Link>
         </div>
@@ -37,7 +34,7 @@ export function Header() {
         <Button
           variant="ghost"
           size="icon"
-          className="md:hidden"
+          className="text-[#4a4333] md:hidden"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           {isMenuOpen ? (
@@ -51,17 +48,23 @@ export function Header() {
         {/* デスクトップナビゲーション */}
         <nav className="hidden md:flex md:items-center md:gap-6">
           <Navigation />
-          <Button asChild>
+          <Button
+            className="rounded-full bg-[#a0e1a7] text-[#4a4333]  hover:bg-[#abefb3] transition-colors"
+            asChild
+          >
             <Link href="/reservation">予約する</Link>
           </Button>
         </nav>
 
         {/* モバイルメニュー */}
         {isMenuOpen && (
-          <div className="absolute left-0 top-16 z-50 w-full bg-background p-4 shadow-lg md:hidden">
+          <div className="absolute left-0 top-16 z-50 w-full bg-white p-4 shadow-lg md:hidden">
             <nav className="flex flex-col space-y-4">
               <Navigation mobile />
-              <Button asChild className="w-full">
+              <Button
+                asChild
+                className="w-full rounded-full bg-[#a0e1a7] text-[#4a4333] hover:bg-[#abefb3]transition-colors"
+              >
                 <Link href="/reservation">予約する</Link>
               </Button>
             </nav>

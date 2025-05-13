@@ -68,8 +68,6 @@ export default function ReservationPage() {
               お支払いは現金・クレジット決済が可能です。
               <br />
               駐車場がございますので、お車でのご来店も安心です。
-              <br />
-              登録番号：第4911-2号
             </p>
           </CardContent>
           <CardFooter>
