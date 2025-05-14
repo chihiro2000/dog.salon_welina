@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Home, Phone, Calendar, Instagram } from "lucide-react";
+import Image from "next/image"; // Next.jsのImageコンポーネントを追加
+import { Home, Calendar, Instagram } from "lucide-react";
 import { siteConfig } from "@/config/site";
 
 export function MobileNav() {
@@ -8,9 +9,20 @@ export function MobileNav() {
       <div className="flex items-center justify-around py-2">
         <NavItem href="/" icon={<Home className="h-5 w-5" />} label="ホーム" />
         <NavItem
-          href={`tel:${siteConfig.contact.phone}`}
-          icon={<Phone className="h-5 w-5" />}
-          label="電話"
+          href="https://miniapp.line.me/2007391595-0JjdlQND?SITE_CODE=hp"
+          target="_blank"
+          rel="noopener noreferrer"
+          icon={
+            <div className="relative h-9 w-9">
+              <Image
+                src="/images/line.png"
+                alt="LINE"
+                fill
+                className="object-contain"
+              />
+            </div>
+          }
+          label="LINE予約"
         />
         <NavItem
           href="https://petlife.asia/salon/17897/"

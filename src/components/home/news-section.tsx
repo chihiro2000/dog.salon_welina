@@ -29,7 +29,7 @@ export function NewsSection() {
   }, []);
 
   return (
-    <section className="bg-[#fdfbea]/70 py-8 sm:py-16">
+    <section className=" bg-[#fefbf2]/100 py-8 sm:py-16">
       <div className="container">
         <div className="mx-auto max-w-4xl">
           <div className="mb-4 sm:mb-8 flex items-center justify-between">

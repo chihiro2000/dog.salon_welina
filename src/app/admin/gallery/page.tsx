@@ -2,23 +2,17 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { Trash2, Edit, Plus, Upload } from "lucide-react";
+import Link from "next/link";
+import { Trash2, Plus, Upload, Home } from "lucide-react";
 
 import {
   getGalleryImages,
   createGalleryImage,
-  updateGalleryImage,
   deleteGalleryImage,
 } from "@/lib/gallery-api";
 import { type GalleryImage } from "@/lib/supabase/spabase";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Dialog,
   DialogContent,
@@ -27,8 +21,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 
 export default function AdminGalleryPage() {
@@ -37,10 +29,6 @@ export default function AdminGalleryPage() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
-  const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-  });
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -61,36 +49,16 @@ export default function AdminGalleryPage() {
     }
   }
 
-  function handleOpenDialog(image?: GalleryImage) {
-    if (image) {
-      setSelectedImage(image);
-      setFormData({
-        title: image.title,
-        description: image.description,
-      });
-      setPreviewUrl(image.image_url);
-    } else {
-      setSelectedImage(null);
-      setFormData({
-        title: "",
-        description: "",
-      });
-      setImageFile(null);
-      setPreviewUrl(null);
-    }
+  function handleOpenDialog() {
+    setSelectedImage(null);
+    setImageFile(null);
+    setPreviewUrl(null);
     setIsDialogOpen(true);
   }
 
   function handleOpenDeleteDialog(image: GalleryImage) {
     setSelectedImage(image);
     setIsDeleteDialogOpen(true);
-  }
-
-  function handleInputChange(
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
   }
 
   function handleImageChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -105,28 +73,26 @@ export default function AdminGalleryPage() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     try {
-      if (selectedImage) {
-        // 更新（メタデータのみ）
-        await updateGalleryImage(selectedImage.id, {
-          title: formData.title,
-          description: formData.description,
-        });
-      } else {
-        // 新規作成
-        if (!imageFile) {
-          alert("画像を選択してください。");
-          return;
-        }
-
-        await createGalleryImage(imageFile, {
-          title: formData.title,
-          description: formData.description,
-        });
+      // 新規作成
+      if (!imageFile) {
+        alert("画像を選択してください。");
+        return;
       }
+
+      // タイトルと説明はデフォルト値を設定
+      const currentDate = new Date();
+      const defaultTitle = `画像 ${currentDate.toLocaleDateString()}`;
+      const defaultDescription = `アップロード日時: ${currentDate.toLocaleString()}`;
+
+      await createGalleryImage(imageFile, {
+        title: defaultTitle,
+        description: defaultDescription,
+      });
+
       // ダイアログを閉じてデータを再取得
       setIsDialogOpen(false);
       fetchImages();
-      if (previewUrl && !selectedImage) {
+      if (previewUrl) {
         URL.revokeObjectURL(previewUrl);
       }
     } catch (error) {
@@ -153,10 +119,19 @@ export default function AdminGalleryPage() {
   return (
     <div className="container py-8">
       <div className="mb-8 flex items-center justify-between">
-        <h1 className="text-3xl font-bold">ギャラリー管理</h1>
+        <div className="flex items-center space-x-4">
+          {/* ダッシュボードに戻るボタンを追加 */}
+          <Button variant="outline" size="sm" asChild>
+            <Link href="/admin">
+              <Home className="mr-2 h-4 w-4" />
+              ダッシュボード
+            </Link>
+          </Button>
+          <h1 className="text-3xl font-bold">ギャラリー管理</h1>
+        </div>
         <Button onClick={() => handleOpenDialog()}>
           <Plus className="mr-2 h-4 w-4" />
-          新規作成
+          新規アップロード
         </Button>
       </div>
 
@@ -171,59 +146,38 @@ export default function AdminGalleryPage() {
               <div className="relative aspect-square w-full">
                 <Image
                   src={image.image_url}
-                  alt={image.title}
+                  alt="ギャラリー画像"
                   fill
                   className="object-cover"
                 />
               </div>
-              <CardHeader>
-                <CardTitle className="line-clamp-1 text-lg">
-                  {image.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="line-clamp-2 text-sm text-muted-foreground">
-                  {image.description}
-                </p>
-              </CardContent>
-              <CardFooter className="flex justify-between">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => handleOpenDialog(image)}
-                >
-                  <Edit className="mr-2 h-4 w-4" />
-                  編集
-                </Button>
+              <CardContent className="p-4">
                 <Button
                   variant="destructive"
                   size="sm"
+                  className="w-full"
                   onClick={() => handleOpenDeleteDialog(image)}
                 >
                   <Trash2 className="mr-2 h-4 w-4" />
                   削除
                 </Button>
-              </CardFooter>
+              </CardContent>
             </Card>
           ))}
         </div>
       ) : (
         <div className="rounded-lg border bg-card p-8 text-center text-muted-foreground">
-          ギャラリー画像がありません。「新規作成」ボタンをクリックして最初の画像をアップロードしてください。
+          ギャラリー画像がありません。「新規アップロード」ボタンをクリックして最初の画像をアップロードしてください。
         </div>
       )}
 
-      {/* ギャラリー編集/作成ダイアログ */}
+      {/* 画像アップロードダイアログ */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent className="sm:max-w-[550px]">
           <DialogHeader>
-            <DialogTitle>
-              {selectedImage
-                ? "ギャラリー画像を編集"
-                : "新しいギャラリー画像を追加"}
-            </DialogTitle>
+            <DialogTitle>新しい画像をアップロード</DialogTitle>
             <DialogDescription>
-              以下のフォームに必要事項を入力し、保存ボタンをクリックしてください。
+              ギャラリーに表示する画像を選択してください。
             </DialogDescription>
           </DialogHeader>
 
@@ -241,54 +195,30 @@ export default function AdminGalleryPage() {
                 </div>
               )}
 
-              {/* 画像アップロード（新規作成時のみ） */}
-              {!selectedImage && (
-                <div className="grid gap-2">
-                  <Label htmlFor="image">画像</Label>
-                  <div
-                    className="flex cursor-pointer flex-col items-center justify-center rounded-lg border border-dashed p-6 text-center hover:bg-muted/50"
-                    onClick={() => fileInputRef.current?.click()}
-                  >
-                    <Upload className="mb-2 h-6 w-6 text-muted-foreground" />
-                    <p className="mb-1 text-sm font-medium">
-                      クリックして画像をアップロード
-                    </p>
-                    <p className="text-xs text-muted-foreground">
-                      PNG, JPG, GIF (最大 5MB)
-                    </p>
-                    <input
-                      ref={fileInputRef}
-                      id="image"
-                      type="file"
-                      accept="image/*"
-                      className="hidden"
-                      onChange={handleImageChange}
-                      required={!selectedImage}
-                    />
-                  </div>
+              {/* 画像アップロード */}
+              <div className="grid gap-2">
+                <Label htmlFor="image">画像を選択</Label>
+                <div
+                  className="flex cursor-pointer flex-col items-center justify-center rounded-lg border border-dashed p-6 text-center hover:bg-muted/50"
+                  onClick={() => fileInputRef.current?.click()}
+                >
+                  <Upload className="mb-2 h-6 w-6 text-muted-foreground" />
+                  <p className="mb-1 text-sm font-medium">
+                    クリックして画像をアップロード
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    PNG, JPG, GIF (最大 5MB)
+                  </p>
+                  <input
+                    ref={fileInputRef}
+                    id="image"
+                    type="file"
+                    accept="image/*"
+                    className="hidden"
+                    onChange={handleImageChange}
+                    required
+                  />
                 </div>
-              )}
-
-              <div className="grid gap-2">
-                <Label htmlFor="title">タイトル</Label>
-                <Input
-                  id="title"
-                  name="title"
-                  value={formData.title}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-
-              <div className="grid gap-2">
-                <Label htmlFor="description">説明</Label>
-                <Textarea
-                  id="description"
-                  name="description"
-                  rows={3}
-                  value={formData.description}
-                  onChange={handleInputChange}
-                />
               </div>
             </div>
 
@@ -300,7 +230,7 @@ export default function AdminGalleryPage() {
               >
                 キャンセル
               </Button>
-              <Button type="submit">保存</Button>
+              <Button type="submit">アップロード</Button>
             </DialogFooter>
           </form>
         </DialogContent>

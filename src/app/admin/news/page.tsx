@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react";
 import { format } from "date-fns";
 import { ja } from "date-fns/locale";
-import { Trash2, Edit, Plus } from "lucide-react";
+import { Trash2, Edit, Plus, Home } from "lucide-react"; // Homeアイコンを追加
+import Link from "next/link"; // Next.jsのLinkコンポーネントをインポート
 
 import { getNews, createNews, updateNews, deleteNews } from "@/lib/news-api";
 import { type News } from "@/lib/supabase/spabase";
@@ -28,6 +29,9 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
+
+// 最大文字数を定数として定義
+const MAX_CONTENT_LENGTH = 400;
 
 export default function AdminNewsPage() {
   const [news, setNews] = useState<News[]>([]);
@@ -88,6 +92,17 @@ export default function AdminNewsPage() {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
     const { name, value } = e.target;
+
+    // contentフィールドの場合、最大文字数を制限
+    if (name === "content" && value.length > MAX_CONTENT_LENGTH) {
+      // 最大文字数を超えた場合は切り詰める
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value.substring(0, MAX_CONTENT_LENGTH),
+      }));
+      return;
+    }
+
     setFormData((prev) => ({ ...prev, [name]: value }));
   }
 
@@ -97,6 +112,13 @@ export default function AdminNewsPage() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+
+    // 送信前に再度文字数チェック
+    if (formData.content.length > MAX_CONTENT_LENGTH) {
+      alert(`内容は${MAX_CONTENT_LENGTH}文字以内で入力してください。`);
+      return;
+    }
+
     try {
       if (selectedNews) {
         // 更新
@@ -140,7 +162,16 @@ export default function AdminNewsPage() {
   return (
     <div className="container py-8">
       <div className="mb-8 flex items-center justify-between">
-        <h1 className="text-3xl font-bold">お知らせ管理</h1>
+        <div className="flex items-center space-x-4">
+          {/* ダッシュボードに戻るボタンを追加 */}
+          <Button variant="outline" size="sm" asChild>
+            <Link href="/admin">
+              <Home className="mr-2 h-4 w-4" />
+              ダッシュボード
+            </Link>
+          </Button>
+          <h1 className="text-3xl font-bold">お知らせ管理</h1>
+        </div>
         <Button onClick={() => handleOpenDialog()}>
           <Plus className="mr-2 h-4 w-4" />
           新規作成
@@ -233,8 +264,12 @@ export default function AdminNewsPage() {
                   rows={5}
                   value={formData.content}
                   onChange={handleInputChange}
+                  maxLength={MAX_CONTENT_LENGTH}
                   required
                 />
+                <div className="text-right text-sm text-muted-foreground">
+                  {formData.content.length}/{MAX_CONTENT_LENGTH}文字
+                </div>
               </div>
 
               <div className="grid gap-2">

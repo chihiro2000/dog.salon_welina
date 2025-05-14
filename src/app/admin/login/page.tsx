@@ -48,7 +48,7 @@ export default function AdminLoginPage() {
         <div className="flex flex-col items-center text-center">
           <div className="mb-4 flex items-center gap-2">
             <Image
-              src="/images/logo.png"
+              src="/images/logo.jpg"
               alt={siteConfig.name}
               width={40}
               height={40}

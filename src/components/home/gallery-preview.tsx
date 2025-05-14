@@ -28,7 +28,7 @@ export function GalleryPreview() {
   }, []);
 
   return (
-    <section className="bg-[#fdfbea]/70 py-8 sm:py-24">
+    <section className="bg-[#fefbf2]/70 py-8 sm:py-24">
       <div className="container">
         <div className="mb-6 sm:mb-12 text-center">
           <h3
