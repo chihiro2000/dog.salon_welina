@@ -23,7 +23,10 @@ export default function PricePage() {
           </p>
         </div>
 
-        <PriceTable />
+        {/* 料金表のみ、モバイルでは画面幅いっぱいにするために外側にコンテナを設置 */}
+        <div className="md:block -mx-6 md:mx-0 px-0 md:px-0 w-screen md:w-auto scale-[0.X]">
+          <PriceTable />
+        </div>
 
         <div className="mt-12 text-center">
           <p className="mb-6 text-muted-foreground">

@@ -170,6 +170,11 @@ export default function GalleryPage() {
 
       {/* インスタグラムリンク */}
       <div className="mt-16 flex flex-col items-center">
+        <p className="mb-4 text-center text-lg text-muted-foreground">
+          Instagramでも、トリミングしたわんちゃんの可愛い写真を投稿しています！
+          <br />
+          ぜひフォローしてチェックしてみてください♪
+        </p>
         <Link
           href={siteConfig.links.instagram}
           target="_blank"
