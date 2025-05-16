@@ -1,8 +1,7 @@
 import { Metadata } from "next";
-
-import { PriceTable } from "@/components/price/price-table";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { PriceTable } from "@/components/price/price-table";
 
 export const metadata: Metadata = {
   title: "料金表",
@@ -12,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function PricePage() {
   return (
-    <div className="container py-12 md:py-16">
+    <div className="px-3 sm:px-4 md:container py-12 md:py-16">
       <div className="mx-auto max-w-4xl">
         <div className="mb-10 text-center">
           <h1 className="mb-3 text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
@@ -23,8 +22,8 @@ export default function PricePage() {
           </p>
         </div>
 
-        {/* 料金表のみ、モバイルでは画面幅いっぱいにするために外側にコンテナを設置 */}
-        <div className="md:block -mx-6 md:mx-0 px-0 md:px-0 w-screen md:w-auto scale-[0.X]">
+        {/* 改良された料金表コンポーネント */}
+        <div className="w-full">
           <PriceTable />
         </div>
 

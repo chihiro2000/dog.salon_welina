@@ -31,7 +31,7 @@ export function Services() {
                 style={{ paddingTop: "75%" }}
               >
                 <Image
-                  src="/images/services/trimming.png"
+                  src="/images/services/trimming.jpg"
                   alt="トリミング"
                   fill
                   className="object-cover"
@@ -88,7 +88,7 @@ export function Services() {
                 style={{ paddingTop: "75%" }}
               >
                 <Image
-                  src="/images/services/shampoo.png"
+                  src="/images/services/shampoo.jpg"
                   alt="シャンプー"
                   fill
                   className="object-cover"

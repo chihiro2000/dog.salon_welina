@@ -19,7 +19,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-[#e6deb7] bg-[#fffef8]/90 backdrop-blur-sm">
-      <div className="container flex h-18 md:h-28 items-center justify-between">
+      <div className="container flex h-24 md:h-32 items-center justify-between">
         <div className="flex items-center gap-2">
           <Link
             href="/"
@@ -27,15 +27,12 @@ export function Header() {
             onClick={closeMenu}
           >
             <Image
-              src="/images/logo.jpg"
+              src="/images/logo.png"
               alt={siteConfig.name}
-              width={80}
-              height={80}
+              width={300}
+              height={120}
               className="rounded-full"
             />
-            <span className="inline-block text-xl font-bold text-[#4a4333]">
-              DOG SALON Welina
-            </span>
           </Link>
         </div>
 

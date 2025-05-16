@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 
 const navItems = [
   { href: "/", label: "ホーム" },
+  { href: "/commitment", label: "こだわり" },
   { href: "/price", label: "料金" },
   { href: "/gallery", label: "ギャラリー" },
   { href: "/about", label: "店舗概要" },

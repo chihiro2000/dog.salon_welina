@@ -3,12 +3,14 @@ import { Services } from "@/components/home/services";
 import { AccessMap } from "@/components/home/access-map";
 import { NewsSection } from "@/components/home/news-section";
 import { GalleryPreview } from "@/components/home/gallery-preview";
+import { Features } from "@/components/home/features";
 import { siteConfig } from "@/config/site";
 
 export default function Home() {
   return (
     <>
       <Hero />
+      <Features />
       <NewsSection />
       <Services />
       <GalleryPreview />
