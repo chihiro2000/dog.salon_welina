@@ -79,7 +79,7 @@ export const metadata: Metadata = {
     url: siteConfig.url,
     title: siteConfig.name,
     description: siteConfig.description,
-    siteName: siteConfig.name,
+    siteName: "DOG SALON Welina",
     images: [
       {
         url: siteConfig.ogImage,

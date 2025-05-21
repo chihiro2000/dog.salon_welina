@@ -16,7 +16,7 @@ export function NewsSection() {
   useEffect(() => {
     async function fetchNews() {
       try {
-        const newsData = await getNews(3); // 最新の3件を取得
+        const newsData = await getNews(5); // 最新の3件を取得
         setLatestNews(newsData);
       } catch (error) {
         console.error("ニュースの取得に失敗しました:", error);
