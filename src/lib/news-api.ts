@@ -28,7 +28,6 @@ const mockNews: News[] = [
 
 // ニュース一覧を取得する関数（最新→古い順）
 export async function getNews(limit = 10): Promise<News[]> {
-  // Supabase利用不可の場合はモックデータを date & created_at 降順でソートして返す
   if (!isSupabaseAvailable() || !supabase) {
     console.log("モックニュースデータを使用します");
     return [...mockNews]
@@ -44,11 +43,9 @@ export async function getNews(limit = 10): Promise<News[]> {
 
   try {
     const { data, error } = await supabase
-      .from<News>("news")
+      .from("news")
       .select("*")
-      // date カラムを降順 (最新→古い) にソート
       .order("date", { ascending: false })
-      // 同じ日付同士は created_at で降順に
       .order("created_at", { ascending: false })
       .limit(limit);
 
@@ -60,7 +57,6 @@ export async function getNews(limit = 10): Promise<News[]> {
     return data ?? [];
   } catch (e) {
     console.error("Supabaseアクセスエラー:", e);
-    // フォールバックでモックデータを返す
     return [...mockNews]
       .sort((a, b) => {
         const d = new Date(b.date).getTime() - new Date(a.date).getTime();
@@ -81,7 +77,7 @@ export async function getNewsById(id: string): Promise<News | null> {
 
   try {
     const { data, error } = await supabase
-      .from<News>("news")
+      .from("news")
       .select("*")
       .eq("id", id)
       .single();
@@ -108,10 +104,7 @@ export async function createNews(
   }
 
   try {
-    const { data, error } = await supabase
-      .from<News>("news")
-      .insert([news])
-      .select();
+    const { data, error } = await supabase.from("news").insert([news]).select();
 
     if (error) {
       console.error("ニュースの作成エラー:", error);
@@ -137,7 +130,7 @@ export async function updateNews(
 
   try {
     const { data, error } = await supabase
-      .from<News>("news")
+      .from("news")
       .update(fields)
       .eq("id", id)
       .select();
@@ -162,7 +155,7 @@ export async function deleteNews(id: string): Promise<boolean> {
   }
 
   try {
-    const { error } = await supabase.from<News>("news").delete().eq("id", id);
+    const { error } = await supabase.from("news").delete().eq("id", id);
 
     if (error) {
       console.error(`ID:${id}のニュース削除エラー:`, error);
