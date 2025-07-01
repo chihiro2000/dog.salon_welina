@@ -50,7 +50,7 @@ export function Features() {
           Icon={Scissors}
           title="オーダーメイドカット"
           text="可愛さだけでなく、わんちゃんが快適に暮らせるようにカットスタイルは飼い主様と相談しながら決めていきます。"
-          imageUrl="/images/Ordermade.JPG"
+          imageUrl="/images/Ordermade.jpg"
         />
       </div>
     </section>
