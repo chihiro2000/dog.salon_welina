@@ -32,7 +32,7 @@ export function Features() {
           Icon={User}
           title="担当トリマー制"
           text="トリマーが変わることなく、同じトリマーが担当するため、わんちゃんの小さな変化もすぐに分かります。"
-          imageUrl="/images/irekawari1.JPG"
+          imageUrl="/images/irekawari1.jpg"
         />
 
         {/* ==== Feature 2 ==== */}
@@ -41,7 +41,7 @@ export function Features() {
           Icon={ShieldCheck}
           title="完全入れ替わり制"
           text="他の犬が苦手なわんちゃんも、完全入れ替わり制なので落ち着いた環境でトリミングを受けられます."
-          imageUrl="/images/triming1.JPG"
+          imageUrl="/images/triming1.jpg"
         />
 
         {/* ==== Feature 3 ==== */}
@@ -50,7 +50,7 @@ export function Features() {
           Icon={Scissors}
           title="オーダーメイドカット"
           text="可愛さだけでなく、わんちゃんが快適に暮らせるようにカットスタイルは飼い主様と相談しながら決めていきます。"
-          imageUrl="/images/Ordermade.jpg"
+          imageUrl="/images/ordermade.jpg"
         />
       </div>
     </section>
